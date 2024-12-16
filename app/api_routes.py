@@ -1,9 +1,9 @@
 from fastapi import APIRouter, UploadFile, Form
 from fastapi.responses import JSONResponse
 import os
-from prprocessing import parse_pdf, parse_word, chunk_document
-from model import load_model, generate_embeddings
-from semantic_search import semantic_search
+from app.prprocessing import parse_pdf, parse_word, chunk_document
+from app.model import load_model, generate_embeddings
+from app.semantic_search import semantic_search
 
 router = APIRouter()
 
