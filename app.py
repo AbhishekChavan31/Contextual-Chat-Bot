@@ -9,7 +9,7 @@ uploaded_file = st.file_uploader("Choose a PDF or Word file", type=["pdf", "docx
 if uploaded_file is not None:
     with st.spinner("Uploading and processing document..."):
         response = requests.post(
-            "http://localhost:8000/upload",
+            "https://contextual-chat-bot.onrender.com",
             files={"file": (uploaded_file.name, uploaded_file, "application/octet-stream")}
         )
         if response.status_code == 200:
@@ -23,7 +23,7 @@ question = st.text_input("Enter your question")
 if st.button("Get Answer"):
     with st.spinner("Fetching answer..."):
         response = requests.post(
-            "http://localhost:8000/query",
+            "https://contextual-chat-bot.onrender.com",
             data={"question": question}
         )
         if response.status_code == 200:
