@@ -1,9 +1,9 @@
 from fastapi import APIRouter, UploadFile, Form
 from fastapi.responses import JSONResponse
 import os
-from app.prprocessing import parse_pdf, parse_word, chunk_document
-from app.model import load_model, generate_embeddings
-from app.semantic_search import semantic_search
+from prprocessing import parse_pdf, parse_word, chunk_document
+from model import load_model, generate_embeddings
+from semantic_search import semantic_search
 
 router = APIRouter()
 
@@ -19,7 +19,6 @@ async def upload_document(file: UploadFile):
         file_path = f"temp_{file.filename}"
         with open(file_path, "wb") as f:
             f.write(file.file.read())
-        
         if file.filename.endswith(".pdf"):
             document = parse_pdf(file_path)
         elif file.filename.endswith(".docx"):

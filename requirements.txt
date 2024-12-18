@@ -4,7 +4,6 @@ pdfplumber
 python-docx 
 transformers 
 sentence-transformers 
-milvus 
 streamlit 
 numpy 
 scipy 

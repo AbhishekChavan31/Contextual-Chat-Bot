@@ -1,0 +1,20 @@
+# Use official Python image
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /ui
+
+# Copy requirements file
+COPY requirements.txt .
+
+# Update pip and install dependencies using a fast mirror
+RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt --timeout=100 --retries=5 
+
+# Copy the application code
+COPY ui/ .
+
+# Expose the Streamlit default port
+EXPOSE 8501
+
+# Run the Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
