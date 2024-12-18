@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api_routes import router  # Ensure api_routes is in the same directory as main.py
+from app.api_routes import router  # Ensure api_routes is in the same directory as main.py
 import uvicorn
 
 
