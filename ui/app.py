@@ -12,6 +12,7 @@ if uploaded_file is not None:
             "http://fastapi:8000/upload",
             files={"file": (uploaded_file.name, uploaded_file, "application/octet-stream")}
         )
+        # for render "https://contextual-chat-bot.onrender.com/upload"
         if response.status_code == 200:
             st.success("Document uploaded and processed successfully!")
         # else:
@@ -26,6 +27,7 @@ if st.button("Get Answer"):
             "http://fastapi:8000/query",
             data={"question": question}
         )
+        #for render "https://contextual-chat-bot.onrender.com/query",
         if response.status_code == 200:
             answer = response.json().get("answer")
             st.success(f"Answer: {answer}")

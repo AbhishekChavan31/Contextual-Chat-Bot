@@ -25,13 +25,10 @@ async def upload_document(file: UploadFile):
             document = parse_word(file_path)
         else:
             return JSONResponse(content={"error": "Unsupported file format."}, status_code=400)
-
         os.remove(file_path)  # Clean up uploaded file
-
         global stored_chunks, stored_embeddings
         stored_chunks = chunk_document(document)
         stored_embeddings = generate_embeddings(stored_chunks, model)
-
         return JSONResponse(content={"message": "Document uploaded and processed successfully."}, status_code=200)
 
     except Exception as e:
@@ -45,6 +42,5 @@ async def query_document(question: str = Form(...)):
             return JSONResponse(content={"error": "No document uploaded."}, status_code=400)
         answer = semantic_search(question, stored_chunks, stored_embeddings, model)
         return JSONResponse(content={"answer": answer}, status_code=200)
-
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
